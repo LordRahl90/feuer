@@ -11,8 +11,8 @@ scrape_configs:
 
   - job_name: "http"
     static_configs:
-      - targets: ["localhost:2112"]
+      - targets: ["feuer:2112"]
 
   - job_name: "grafana"
     static_configs:
-      - targets: ["localhost:3000"]
+      - targets: ["grafana:3000"]

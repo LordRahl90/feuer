@@ -1,6 +1,14 @@
 HOME = $(shell pwd)
 DOCKER = docker run --net host -it --rm
 
+build:
+	GOOS=linux go build -o ./bin/feuer
+	docker build -t lordrahl/feuer .
+	rm -rf ./bin ./Library
+
+run:
+	docker-compose up
+
 server:
 	go run *.go
 
