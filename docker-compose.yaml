@@ -1,0 +1,34 @@
+version: "3"
+services:
+  feuer:
+    container_name: feuer
+    image: lordrahl/feuer
+    ports:
+      - 2112:2112
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - "./prometheus.yml:/etc/prometheus/prometheus.yml"
+
+  influxdb:
+    container_name: influxdb
+    image: quay.io/influxdb/influxdb:v2.0.3
+    ports:
+      - 8086:8086
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:latest
+    ports:
+      - 3000:3000
+    volumes:
+      - ./datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
+
+  telegraf:
+    container_name: telegraf
+    image: telegraf
+    volumes:
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf
